@@ -1,0 +1,24 @@
+// variables
+$dark_blue: #14274e;
+$medium_blue: #394867;
+$grey: #9ba4b4;
+$primary_font: 'Poppins';
+$secondary_font: 'Montserrat';
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: $primary_font;
+}
+
+.back-button {
+    &:hover {
+        transform: translateX(-7px);
+        transition: 0.5s;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+}

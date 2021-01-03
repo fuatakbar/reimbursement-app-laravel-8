@@ -1,0 +1,27 @@
+.btn-primary {
+    background-color: $medium_blue;
+    border: 1px solid white;
+
+    &:hover {
+        background-color: $dark_blue;
+        border: 1px solid $grey;
+    }
+}
+
+.btn-secondary {
+    @extend .btn-primary;
+    background-color: $dark_blue;
+    &:hover {
+        background-color: $medium_blue;
+    }
+}
+
+.btn-grey {
+    @extend .btn-primary;
+    color: #000;
+    background-color: $grey;
+    &:hover {
+        background-color: #fff;
+        color: $medium_blue;
+    }
+}

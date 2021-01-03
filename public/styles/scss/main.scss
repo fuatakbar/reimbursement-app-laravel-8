@@ -1,0 +1,94 @@
+@import 'config', 'component/background', 'component/button';
+
+a {
+    text-decoration: none;
+    &:hover {
+        transform: translateY(-7px);
+        transition: 0.5s;
+    }
+}
+
+.navbar {
+    background-color: $dark_blue !important; 
+}
+
+// content section
+
+.user-dashboard {
+    .sidebar {
+        .active {
+            transform: translateX(7px);
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                padding-bottom: 7px;
+
+                &:hover {
+                    color: $dark_blue;
+                    transform: translateX(7px);
+                    transition: 0.5s;
+                }
+
+                i {
+                    padding-right: 5px;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: $medium_blue;
+                }
+            }
+        }
+    }
+
+    .profile-setting {
+        @extend .sidebar;
+    }
+
+    .statistic {
+        .total {
+            font-size: 23px;
+            font-weight: 600;
+        }
+    }
+}
+
+.class-area {
+    @extend .user-dashboard;
+
+    .table-data {
+        tbody > tr > td {
+            vertical-align: middle;
+        }
+    }
+}
+
+.student-area {
+    @extend .class-area;
+}
+
+.teacher-area {
+    @extend .class-area;
+}
+
+// auth area
+.login-area, .register-area {
+    margin-top: 150px;
+    margin-bottom: 150px;
+
+    a {
+        @extend a;
+    }
+}
+
+// end content section
+
+footer {
+    color: #fff;
+    background-color: $dark_blue;
+}
+
