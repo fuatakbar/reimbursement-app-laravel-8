@@ -10,18 +10,18 @@
             
             {{-- sidebar for business owner --}}
             @if (Auth::user()->role == 1)
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(1) == 'managers' ? 'active' : ''}}">
+                    <a href="{{route('managers')}}">
                         <i class="fas fa-angle-double-right"></i> Managers
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'teacher' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(1) == 'finances' ? 'active' : ''}}">
+                    <a href="{{route('finances')}}">
                         <i class="fas fa-angle-double-right"></i> Financial Admins
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'student' ? 'active' : ''}}">
-                    <a href="#}">
+                <li class="{{Request::segment(1) == 'employers' ? 'active' : ''}}">
+                    <a href="{{route('employers')}}">
                         <i class="fas fa-angle-double-right"></i> Employers
                     </a>
                 </li>

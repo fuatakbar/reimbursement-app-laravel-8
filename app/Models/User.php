@@ -40,15 +40,15 @@ class User extends Authenticatable
     ];
 
     // relation
-    public function role(){
+    public function roles(){
         return $this->hasOne(Role::class, 'id', 'role');
     }
 
-    public function division(){
+    public function divisions(){
         return $this->hasOne(Division::class, 'id', 'division');
     }
 
-    public function bankAccount(){
+    public function bankAccounts(){
         return $this->hasOne(BankAccount::class, 'id', 'bank_account');
     }
 }

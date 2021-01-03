@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+// models
+use App\Models\BankAccount;
+
 class HomeController extends Controller
 {
     /**
@@ -22,7 +25,15 @@ class HomeController extends Controller
         } elseif (Auth::user()->role == 3) {
             // 
         } elseif (Auth::user()->role == 4) {
-            // 
+            $bank_account = BankAccount::where('user_id', Auth::user()->id)->first();
+
+            if ($bank_account == null) {
+                $must_fill_bank = true;
+
+                return view('pages.index', compact('must_fill_bank'));
+            } else {
+                return view('pages.index', compact('bank_account'));
+            }
         }
 
         return view('pages.index');

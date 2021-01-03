@@ -14,7 +14,11 @@
 Auth::routes();
 
 Route::get('/', function(){
-    return redirect()->route('login');
+    if (Auth::user()) {
+        return redirect()->route('dashboard');
+    } else {
+        return redirect()->route('login');
+    }
 });
 
 Route::middleware(['auth'])
@@ -31,6 +35,41 @@ Route::middleware(['auth'])
         Route::post('/user/change-password', 'UserController@changePassword')
             ->name('user.change.password');
 
+        Route::post('/user/add-bank', 'UserController@addBankAccount')
+            ->name('user.add.bank');
+
+        Route::post('/user/change-bank', 'UserController@updateBankAccount')
+            ->name('user.change.bank');
+
     });
 
+// only business owner
+Route::middleware(['auth', 'owner'])
+    ->group(function(){
 
+        Route::get('/employers', 'BusinessOwnerController@employer')
+            ->name('employers');
+
+        Route::get('/managers', 'BusinessOwnerController@manager')
+            ->name('managers');
+
+        Route::get('/finances', 'BusinessOwnerController@finance')
+            ->name('finances');
+
+    });
+
+// only business manager
+Route::middleware(['auth', 'manager'])
+    ->group(function(){
+
+        // 
+
+    });
+
+// only business manager
+Route::middleware(['auth', 'finance'])
+    ->group(function(){
+
+        // 
+
+    });

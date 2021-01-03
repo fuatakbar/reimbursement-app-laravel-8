@@ -8,6 +8,7 @@ use Hash;
 
 // models
 use App\Models\User;
+use App\Models\BankAccount;
 
 class UserController extends Controller
 {
@@ -56,5 +57,32 @@ class UserController extends Controller
             return redirect()->back()->with(['message' => 'Old Password Not Match']);
         }
 
+    }
+
+    public function updateBankAccount(Request $req){
+        $bank_account = BankAccount::where('user_id', Auth::user()->id)->first();
+        $bank_account->account_number = $req->account_number;
+        $bank_account->bank_code = $req->bank_code;
+        $save = $bank_account->save();
+
+        if ($save) {
+            return redirect()->route('dashboard')->with(['message' => 'Bank Account Successfully Updated!']);
+        } else {
+            return redirect()->route('dashboard')->with(['message' => 'Bank Account Failed to Update!']);
+        }
+    }
+
+    public function addBankAccount(Request $req){
+        $data = [
+            'account_number' => $req->account_number,
+            'bank_code' => $req->bank_code,
+            'user_id' => Auth::user()->id
+        ];
+
+        $add = BankAccount::create($data);
+
+        if ($add) {
+            return redirect()->route('dashboard')->with(['message' => 'Bank Account Added!']);
+        }
     }
 }

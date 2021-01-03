@@ -25,7 +25,7 @@
                                         Total
                                     </div>
                                     <div class="card-body total">
-                                        {{-- {{$total_class}} --}}
+                                        10
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                         Approved
                                     </div>
                                     <div class="card-body total">
-                                        {{-- {{$total_teacher}} --}}
+                                        0
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                         Pending
                                     </div>
                                     <div class="card-body total">
-                                        {{-- {{$total_student}} --}}
+                                        3
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                         Rejected
                                     </div>
                                     <div class="card-body total">
-                                        {{-- {{$total_student}} --}}
+                                        2
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,17 @@
                                         Cancelled
                                     </div>
                                     <div class="card-body total">
-                                        {{-- {{$total_student}} --}}
+                                        0
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 text-center mb-3">
+                                <div class="card bg">
+                                    <div class="card-header bg-secondary">
+                                        Processed
+                                    </div>
+                                    <div class="card-body total">
+                                        5
                                     </div>
                                 </div>
                             </div>
@@ -86,6 +96,13 @@
                                     <i class="fas fa-angle-double-right"></i> Name Setting
                                 </a>
                             </li>
+                            @if (Auth::user()->role == 4)
+                                <li>
+                                    <a href="http://" data-toggle="modal" data-target="#changeBankModal">
+                                        <i class="fas fa-angle-double-right"></i> Bank Account
+                                    </a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="http://" data-toggle="modal" data-target="#changePasswordModal">
                                     <i class="fas fa-angle-double-right"></i> Change Password
@@ -114,11 +131,11 @@
                         <div class="modal-body">
                             <div class="form-group mb-3">
                                 <label for="firstname">First firstname</label>
-                                <input class="form-control" type="text" name="firstname" id="firstname" required min="3">
+                                <input class="form-control" type="text" name="firstname" id="firstname" required min="3" value="{{Auth::user()->firstname}}">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="lastname">Last lastname</label>
-                                <input class="form-control" type="text" name="lastname" id="lastname" required min="3">
+                                <input class="form-control" type="text" name="lastname" id="lastname" required min="3" value="{{Auth::user()->lastname}}">
                             </div>
                         </div>
 
@@ -131,6 +148,42 @@
         </div>
         </div>
     </div>
+
+    <!-- Add Change Bank Modal -->
+    @if (Auth::user()->role == 4)
+        <div class="modal fade" id="changeBankModal" tabindex="-1" role="dialog" aria-labelledby="changeBankModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{{route('user.change.bank')}}" method="post">
+                @csrf
+                @method('POST')
+                    <div class="modal-header bg-primary">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Update Bank Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                        </div>
+                            <div class="modal-body">
+                                <div class="form-group mb-3">
+                                    <label for="account_number">Account Number</label>
+                                    <input class="form-control" type="text" name="account_number" id="account_number" required min="7" max='30' value="{{$bank_account->account_number}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="bank_code">Bank Code</label>
+                                    <input class="form-control" type="text" name="bank_code" id="bank_code" required min="2" max='5' value="{{$bank_account->bank_code}}">
+                                </div>
+                            </div>
+
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-grey" data-dismiss="modal">
+                            Close</button>
+                        <button type="submit" class="btn btn-secondary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    @endif
 
     <!-- Add Change Password Modal -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalTitle" aria-hidden="true">
