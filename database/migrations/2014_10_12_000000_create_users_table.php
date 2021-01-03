@@ -17,9 +17,6 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('firstname', 50);
             $table->string('lastname', 50);
-            // $table->foreignId('role')->constrained('roles')->onDelete('cascade');
-            // $table->foreignId('division')->constrained('divisions')->onDelete('cascade');
-            // $table->foreignId('bank_account')->constrained('bank_accounts')->onDelete('cascade');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

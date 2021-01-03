@@ -14,7 +14,7 @@ class AddFinancialAdminIdToReimbursementsTable extends Migration
     public function up()
     {
         Schema::table('reimbursements', function (Blueprint $table) {
-            $table->foreignId('financial_admin_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedBigInteger('financial_admin_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddFinancialAdminIdToReimbursementsTable extends Migration
     public function down()
     {
         Schema::table('reimbursements', function (Blueprint $table) {
-            $table->dropForeign(['financial_admin_id']);
+            $table->dropColumn('financial_admin_id');
         });
     }
 }

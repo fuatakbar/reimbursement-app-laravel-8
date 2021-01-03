@@ -15,7 +15,6 @@ class CreateReimbursementRequestsTable extends Migration
     {
         Schema::create('reimbursement_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->foreignId('reimbursement_id')->constrained('reimbursements')->onDelete('cascade');
             $table->text('expense_proof');
             $table->text('description');
             $table->string('filed_date');

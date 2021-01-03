@@ -54,6 +54,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="division" class="col-md-4 col-form-label text-md-right">{{ __('Division') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="division" id="division" class="form-control">
+                                    @foreach ($divisions as $d)
+                                        <option value="{{$d->id}}" class="text-capitalize">{{$d->name}}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('division')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

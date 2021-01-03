@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 // models
+use App\Models\Division;
 
 class RegisterController extends Controller
 {
@@ -44,7 +45,9 @@ class RegisterController extends Controller
     }
 
     public function showRegistrationForm(){
-        return view('auth.register');
+        $divisions = Division::orderBy('name', 'asc')->get();
+
+        return view('auth.register', compact('divisions'));
     }
 
     /**
@@ -76,7 +79,8 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'role' => 4,
-            'division' => 1,
+            'division' => $data['division'],
+            'bank_account' => 0,
             'password' => Hash::make($data['password']),
         ]);
     }

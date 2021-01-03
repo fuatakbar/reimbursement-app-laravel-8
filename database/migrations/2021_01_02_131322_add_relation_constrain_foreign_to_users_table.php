@@ -16,7 +16,7 @@ class AddRelationConstrainForeignToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role')->constrained('roles')->onDelete('cascade');
             $table->foreignId('division')->constrained('divisions')->onDelete('cascade');
-            $table->foreignId('bank_account')->constrained('bank_accounts')->onDelete('cascade');
+            $table->unsignedInteger('bank_account')->nullable();
         });
     }
 
@@ -30,7 +30,7 @@ class AddRelationConstrainForeignToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['role']);
             $table->dropForeign(['division']);
-            $table->dropForeign(['bank_account']);
+            $table->dropColumn('bank_account');
         });
     }
 }
