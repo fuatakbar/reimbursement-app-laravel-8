@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Class Management
+    Reimbursement App
 @endsection
 
 @section('content')
@@ -15,37 +15,57 @@
                 {{-- class table --}}
                 <div class="card statistic">
                     <div class="card-header bg-primary">
-                        Statistics
+                        Reimbursement's Statistics
                     </div>
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-lg-4 text-center">
+                            <div class="col-12 col-lg-4 text-center mb-3">
                                 <div class="card bg">
                                     <div class="card-header bg-secondary">
-                                        Total Class
+                                        Total
                                     </div>
                                     <div class="card-body total">
-                                        {{$total_class}}
+                                        {{-- {{$total_class}} --}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 text-center">
+                            <div class="col-12 col-lg-4 text-center mb-3">
                                 <div class="card bg">
                                     <div class="card-header bg-secondary">
-                                        Total Teacher
+                                        Approved
                                     </div>
                                     <div class="card-body total">
-                                        {{$total_teacher}}
+                                        {{-- {{$total_teacher}} --}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 text-center">
+                            <div class="col-12 col-lg-4 text-center mb-3">
                                 <div class="card bg">
                                     <div class="card-header bg-secondary">
-                                        Total Student
+                                        Pending
                                     </div>
                                     <div class="card-body total">
-                                        {{$total_student}}
+                                        {{-- {{$total_student}} --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 text-center mb-3">
+                                <div class="card bg">
+                                    <div class="card-header bg-secondary">
+                                        Rejected
+                                    </div>
+                                    <div class="card-body total">
+                                        {{-- {{$total_student}} --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 text-center mb-3">
+                                <div class="card bg">
+                                    <div class="card-header bg-secondary">
+                                        Cancelled
+                                    </div>
+                                    <div class="card-body total">
+                                        {{-- {{$total_student}} --}}
                                     </div>
                                 </div>
                             </div>
@@ -86,15 +106,19 @@
             @csrf
             @method('POST')
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Student</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Name</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
                     </div>
                         <div class="modal-body">
                             <div class="form-group mb-3">
-                                <label for="name">New Name</label>
-                                <input class="form-control" type="text" name="name" id="name" required min="3">
+                                <label for="firstname">First firstname</label>
+                                <input class="form-control" type="text" name="firstname" id="firstname" required min="3">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="lastname">Last lastname</label>
+                                <input class="form-control" type="text" name="lastname" id="lastname" required min="3">
                             </div>
                         </div>
 
@@ -116,7 +140,7 @@
             @csrf
             @method('POST')
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Student</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>

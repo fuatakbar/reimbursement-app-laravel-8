@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark py-3">
-    <a class="navbar-brand text-white" href="{{route('home')}}">
+    <a class="navbar-brand text-white" href="{{route('dashboard')}}">
         Reimbursement App
     </a>
 
@@ -32,7 +32,7 @@
         @csrf
         @method('POST')
             @auth
-                <span class="text-white pr-3">Welcome, {{Auth::user()->name}} as User </span>
+                <span class="text-white pr-3">Welcome, {{Auth::user()->firstname}} as {{Auth::user()->role == 1 ? 'Business Owner' : (Auth::user()->role == 2 ? 'Manager' : (Auth::user()->role == 3 ? 'Financial Admin' : (Auth::user()->role == 4 ? 'Employer' : 'N/A')))}} </span>
 
                 <button type="submit" class="btn btn-primary">
                     Logout

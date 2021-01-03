@@ -34,6 +34,10 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected function redirectTo(){
+        return '/dashboard';
+    }
+
     /**
      * Create a new controller instance.
      *

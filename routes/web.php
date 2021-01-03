@@ -1,10 +1,5 @@
 <?php
 
-// use Illuminate\Support\Facades\Route;
-
-// controller define
-// use App\Http\Controllers\HomeController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +11,26 @@
 |
 */
 
-// Route::get('/', function(){
-//     return redirect()->route('login');
-// });
-
 Auth::routes();
+
+Route::get('/', function(){
+    return redirect()->route('login');
+});
 
 Route::middleware(['auth'])
     ->group(function(){
-    
-    Route::get('/', 'HomeController@index')
-        ->name('home');
+
+        // dashboard route 
+        Route::get('/dashboard', 'HomeController@index')
+            ->name('dashboard');
+
+        // user controller
+        Route::post('/user/change-name', 'UserController@changeName')
+            ->name('user.change.name');
+
+        Route::post('/user/change-password', 'UserController@changePassword')
+            ->name('user.change.password');
 
     });
+
+

@@ -30,6 +30,9 @@
     {{-- notification modal --}}
     @include('includes.notification-modal')
 
+    {{-- notification modal --}}
+    @include('includes.error-modal')
+
     <footer>
         @include('includes.footer')
     </footer>
