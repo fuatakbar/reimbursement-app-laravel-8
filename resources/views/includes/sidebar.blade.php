@@ -29,18 +29,18 @@
 
             {{-- sidebar for manager --}}
             @if (Auth::user()->role == 2)
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'approved-manager' ? 'active' : ''}}">
+                    <a href="{{route('manager.approved')}}">
                         <i class="fas fa-angle-double-right"></i> Approved
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'pending-manager' ? 'active' : ''}}">
+                    <a href="{{route('manager.pending')}}">
                         <i class="fas fa-angle-double-right"></i> Pending
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'rejected-manager' ? 'active' : ''}}">
+                    <a href="{{route('manager.rejected')}}">
                         <i class="fas fa-angle-double-right"></i> Rejected
                     </a>
                 </li>

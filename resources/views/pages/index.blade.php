@@ -126,9 +126,80 @@
                                                 <td>Rp {{$d->total}}</td>
                                                 <td>
                                                     {{-- detail button --}}
-                                                    <a href="{{route('employer.show', [$d->id])}}" class="pr-1">
-                                                        <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
-                                                    </a>
+                                                    @if (Auth::user() && Auth::user()->role == 4)
+                                                        <a href="{{route('employer.show', [$d->id])}}" class="pr-1">
+                                                            <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                        </a>
+                                                    @elseif (Auth::user() && Auth::user()->role == 2)
+                                                        <a href="{{route('manager.show', [$d->id])}}" class="pr-1">
+                                                            <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                        </a>
+                                                    {{-- @elseif (Auth::user() && Auth::user()->role == 3)
+                                                        <a href="{{route('finance.show', [$d->id])}}" class="pr-1">
+                                                            <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                        </a> --}}
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Empty Data</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{$data->links()}}
+                        @elseif (Auth::user() && Auth::user()->role == 2)
+                            <div class="table-responsive mb-3">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Filed Date</th>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($data as $key => $d)
+                                            <tr class="text-center">
+                                                <td>{{$d->filed_date}}</td>
+                                                <td>{{$d->employer->firstname . ' ' . $d->employer->lastname}}</td>
+                                                <td> 
+                                                    @if ($d->status == 'Pending')
+                                                        <button class="btn btn-status-pending text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @elseif ($d->status == 'Approved')
+                                                        <button class="btn btn-status-approved text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @elseif ($d->status == 'Rejected')
+                                                        <button class="btn btn-status-reject text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @elseif ($d->status == 'Processed')
+                                                        <button class="btn btn-status-processed text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{-- detail button --}}
+                                                    @if (Auth::user() && Auth::user()->role == 4)
+                                                        <a href="{{route('employer.show', [$d->id])}}" class="pr-1">
+                                                            <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                        </a>
+                                                    @elseif (Auth::user() && Auth::user()->role == 2)
+                                                        <a href="{{route('manager.show', [$d->id])}}" class="pr-1">
+                                                            <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                        </a>
+                                                    {{-- @elseif (Auth::user() && Auth::user()->role == 3)
+                                                        <a href="{{route('finance.show', [$d->id])}}" class="pr-1">
+                                                            <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                        </a> --}}
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @empty

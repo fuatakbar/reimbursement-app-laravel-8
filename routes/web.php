@@ -80,7 +80,16 @@ Route::middleware(['auth', 'owner'])
 Route::middleware(['auth', 'manager'])
     ->group(function(){
 
-        // 
+        Route::resource('manager', 'ManagerController'); 
+
+        Route::get('/reimbursement/pending-manager', 'ManagerController@pending')
+            ->name('manager.pending');
+
+        Route::get('/reimbursement/rejected-manager', 'ManagerController@rejected')
+            ->name('manager.rejected');
+
+        Route::get('/reimbursement/approved-manager', 'ManagerController@approved')
+            ->name('manager.approved');
 
     });
 
