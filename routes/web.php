@@ -41,6 +41,9 @@ Route::middleware(['auth'])
         Route::post('/user/change-bank', 'UserController@updateBankAccount')
             ->name('user.change.bank');
 
+        // employer controller
+        Route::resource('employer', 'EmployerController');
+
     });
 
 // only business owner

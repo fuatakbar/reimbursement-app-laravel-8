@@ -55,24 +55,10 @@ a {
             font-weight: 600;
         }
     }
-}
 
-.class-area {
-    @extend .user-dashboard;
-
-    .table-data {
-        tbody > tr > td {
-            vertical-align: middle;
-        }
+    table>tbody>tr>td {
+        vertical-align: middle;
     }
-}
-
-.student-area {
-    @extend .class-area;
-}
-
-.teacher-area {
-    @extend .class-area;
 }
 
 // auth area
@@ -86,7 +72,6 @@ a {
 }
 
 // end content section
-
 footer {
     color: #fff;
     background-color: $dark_blue;

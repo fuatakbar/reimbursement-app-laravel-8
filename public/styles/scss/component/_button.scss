@@ -25,3 +25,29 @@
         color: $medium_blue;
     }
 }
+
+.btn-status-approved {
+    color: #fff;
+    border: 1px solid white;
+    background-color: $approved;
+    font-size: 13px;
+    &:hover {
+        cursor: default;
+        color: #fff;
+    }
+}
+
+.btn-status-pending {
+    @extend .btn-status-approved;
+    background-color: $pending;
+}
+
+.btn-status-reject {
+    @extend .btn-status-approved;
+    background-color: $reject;
+}
+
+.btn-status-processed {
+    @extend .btn-status-approved;
+    background-color: $processed;
+}

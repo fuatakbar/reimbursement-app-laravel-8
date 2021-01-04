@@ -60,6 +60,15 @@ class UserController extends Controller
     }
 
     public function updateBankAccount(Request $req){
+        // validate unique bank account
+        $req->validate([
+            'account_number' => 'unique:bank_accounts|min:6|max:30'
+        ]);
+
+        if (isset($errors)) {
+            return redirect()->back()->with(['message' => 'Please try again and check your account number.']);
+        }
+
         $bank_account = BankAccount::where('user_id', Auth::user()->id)->first();
         $bank_account->account_number = $req->account_number;
         $bank_account->bank_code = $req->bank_code;
@@ -73,6 +82,15 @@ class UserController extends Controller
     }
 
     public function addBankAccount(Request $req){
+        // validate unique bank account
+        $req->validate([
+            'account_number' => 'unique:bank_accounts|min:6|max:30'
+        ]);
+
+        if (isset($errors)) {
+            return redirect()->back()->with(['message' => 'Please try again and check your account number.']);
+        }
+
         $data = [
             'account_number' => $req->account_number,
             'bank_code' => $req->bank_code,
@@ -82,6 +100,11 @@ class UserController extends Controller
         $add = BankAccount::create($data);
 
         if ($add) {
+            // save to user bank account
+            $user = User::where('id', Auth::user()->id)->first();
+            $user->bank_account = $add->id;
+            $user->save();
+
             return redirect()->route('dashboard')->with(['message' => 'Bank Account Added!']);
         }
     }

@@ -58,8 +58,8 @@
             {{-- sidebar for employer --}}
             @if (Auth::user()->role == 4)
                 <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
-                        <i class="fas fa-angle-double-right"></i> Submit Form
+                    <a href="{{route('employer.create')}}">
+                        <i class="fas fa-angle-double-right"></i> Form Request
                     </a>
                 </li>
                 <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">

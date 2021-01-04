@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Reimbursement App
+    Reimbursement App - Dashboard
 @endsection
 
 @section('content')
@@ -22,72 +22,104 @@
                         @elseif (Auth::user() && Auth::user()->role == 3)
                             Reimbursement Unprocessed
                         @elseif (Auth::user() && Auth::user()->role == 4)
-                            Your Reimbursements List
+                            Your Reimbursements List by Date
                         @endif
                     </div>
                     <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-lg-4 text-center mb-3">
-                                <div class="card bg">
-                                    <div class="card-header bg-secondary">
-                                        Total
+                        @if (Auth::user() && Auth::user()->role == 1)
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-lg-4 text-center mb-3">
+                                    <div class="card bg">
+                                        <div class="card-header bg-secondary">
+                                            Total
+                                        </div>
+                                        <div class="card-body total">
+                                            10
+                                        </div>
                                     </div>
-                                    <div class="card-body total">
-                                        10
+                                </div>
+                                <div class="col-12 col-lg-4 text-center mb-3">
+                                    <div class="card bg">
+                                        <div class="card-header bg-secondary">
+                                            Approved
+                                        </div>
+                                        <div class="card-body total">
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 text-center mb-3">
+                                    <div class="card bg">
+                                        <div class="card-header bg-secondary">
+                                            Pending
+                                        </div>
+                                        <div class="card-body total">
+                                            3
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 text-center mb-3">
+                                    <div class="card bg">
+                                        <div class="card-header bg-secondary">
+                                            Rejected
+                                        </div>
+                                        <div class="card-body total">
+                                            2
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 text-center mb-3">
+                                    <div class="card bg">
+                                        <div class="card-header bg-secondary">
+                                            Cancelled
+                                        </div>
+                                        <div class="card-body total">
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4 text-center mb-3">
+                                    <div class="card bg">
+                                        <div class="card-header bg-secondary">
+                                            Processed
+                                        </div>
+                                        <div class="card-body total">
+                                            5
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 text-center mb-3">
-                                <div class="card bg">
-                                    <div class="card-header bg-secondary">
-                                        Approved
-                                    </div>
-                                    <div class="card-body total">
-                                        0
-                                    </div>
-                                </div>
+                        @elseif (Auth::user() && Auth::user()->role == 4)
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>#</th>
+                                            <th>Filed Date</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>1</td>
+                                            <td>20 Sept 2021</td>
+                                            <td>
+                                                <button class="btn btn-status-processed text-capitalize">
+                                                    approved
+                                                </button>
+                                            </td>
+                                            <td>
+                                                {{-- detail button --}}
+                                                <a href="#" class="pr-1">
+                                                    <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-12 col-lg-4 text-center mb-3">
-                                <div class="card bg">
-                                    <div class="card-header bg-secondary">
-                                        Pending
-                                    </div>
-                                    <div class="card-body total">
-                                        3
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4 text-center mb-3">
-                                <div class="card bg">
-                                    <div class="card-header bg-secondary">
-                                        Rejected
-                                    </div>
-                                    <div class="card-body total">
-                                        2
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4 text-center mb-3">
-                                <div class="card bg">
-                                    <div class="card-header bg-secondary">
-                                        Cancelled
-                                    </div>
-                                    <div class="card-body total">
-                                        0
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4 text-center mb-3">
-                                <div class="card bg">
-                                    <div class="card-header bg-secondary">
-                                        Processed
-                                    </div>
-                                    <div class="card-body total">
-                                        5
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -158,7 +190,7 @@
     </div>
 
     <!-- Add Change Bank Modal -->
-    @if (Auth::user()->role == 4)
+    @if (Auth::user()->role == 4 && Auth::user()->bank_account != null)
         <div class="modal fade" id="changeBankModal" tabindex="-1" role="dialog" aria-labelledby="changeBankModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

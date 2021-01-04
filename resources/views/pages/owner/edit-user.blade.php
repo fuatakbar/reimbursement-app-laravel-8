@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit User
+    Reimbursement App - Edit User
 @endsection
 
 @section('content')

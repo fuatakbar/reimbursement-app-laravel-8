@@ -14,7 +14,7 @@ class AddFinancialAdminIdToReimbursementsTable extends Migration
     public function up()
     {
         Schema::table('reimbursements', function (Blueprint $table) {
-            $table->unsignedBigInteger('financial_admin_id');
+            $table->unsignedBigInteger('financial_admin_id')->nullable();
         });
     }
 
