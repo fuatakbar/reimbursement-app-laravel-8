@@ -44,6 +44,18 @@ Route::middleware(['auth'])
         // employer controller
         Route::resource('employer', 'EmployerController');
 
+        Route::get('/reimbursement/pending-employer', 'EmployerController@pending')
+            ->name('employer.pending');
+
+        Route::get('/reimbursement/rejected-employer', 'EmployerController@rejected')
+            ->name('employer.rejected');
+
+        Route::get('/reimbursement/approved-employer', 'EmployerController@approved')
+            ->name('employer.approved');
+
+        Route::get('/reimbursement/processed-employer', 'EmployerController@processed')
+            ->name('employer.processed');
+
     });
 
 // only business owner

@@ -9,8 +9,10 @@ class Reimbursement extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'status', 'filed_date', 'user_id', 'manager_id', 'financial_admin_id'
+        'status', 'filed_date', 'user_id', 'manager_id', 'financial_admin_id', 'total'
     ];
 
     // relation

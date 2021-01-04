@@ -17,9 +17,9 @@ class CreateReimbursementRequestsTable extends Migration
             $table->bigIncrements('id');
             $table->text('expense_proof');
             $table->text('description');
-            $table->string('filed_date');
-            $table->string('filed_time');
-            $table->timestamps();
+            $table->integer('amount_spent');
+            $table->string('filed_date', 20);
+            $table->string('filed_time', 20);
         });
     }
 

@@ -90,35 +90,56 @@
                                 </div>
                             </div>
                         @elseif (Auth::user() && Auth::user()->role == 4)
-                            <div class="table-responsive">
+                            <div class="table-responsive mb-3">
                                 <table class="table">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>#</th>
                                             <th>Filed Date</th>
                                             <th>Status</th>
+                                            <th>Total</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="text-center">
-                                            <td>1</td>
-                                            <td>20 Sept 2021</td>
-                                            <td>
-                                                <button class="btn btn-status-processed text-capitalize">
-                                                    approved
-                                                </button>
-                                            </td>
-                                            <td>
-                                                {{-- detail button --}}
-                                                <a href="#" class="pr-1">
-                                                    <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @forelse ($data as $key => $d)
+                                            <tr class="text-center">
+                                                <td>{{$d->filed_date}}</td>
+                                                <td> 
+                                                    @if ($d->status == 'Pending')
+                                                        <button class="btn btn-status-pending text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @elseif ($d->status == 'Approved')
+                                                        <button class="btn btn-status-approved text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @elseif ($d->status == 'Rejected')
+                                                        <button class="btn btn-status-reject text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @elseif ($d->status == 'Processed')
+                                                        <button class="btn btn-status-processed text-capitalize">
+                                                            {{$d->status}}
+                                                        </button>
+                                                    @endif
+                                                </td>
+                                                <td>Rp {{$d->total}}</td>
+                                                <td>
+                                                    {{-- detail button --}}
+                                                    <a href="{{route('employer.show', [$d->id])}}" class="pr-1">
+                                                        <button class="btn btn-secondary py-1 px-2"><i class="far fa-eye"></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Empty Data</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
+                            {{$data->links()}}
                         @endif
                     </div>
                 </div>

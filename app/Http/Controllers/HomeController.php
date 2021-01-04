@@ -7,6 +7,7 @@ use Auth;
 
 // models
 use App\Models\BankAccount;
+use App\Models\Reimbursement;
 
 class HomeController extends Controller
 {
@@ -26,13 +27,14 @@ class HomeController extends Controller
             // 
         } elseif (Auth::user()->role == 4) {
             $bank_account = BankAccount::where('user_id', Auth::user()->id)->first();
+            $data = Reimbursement::where('user_id', Auth::user()->id)->paginate(8);
 
             if ($bank_account == null) {
                 $must_fill_bank = true;
 
                 return view('pages.index', compact('must_fill_bank'));
             } else {
-                return view('pages.index', compact('bank_account'));
+                return view('pages.index', compact('bank_account', 'data'));
             }
         }
 

@@ -57,28 +57,28 @@
 
             {{-- sidebar for employer --}}
             @if (Auth::user()->role == 4)
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
+                <li class="{{Request::segment(2) == 'create' ? 'active' : ''}}">
                     <a href="{{route('employer.create')}}">
                         <i class="fas fa-angle-double-right"></i> Form Request
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'pending-employer' ? 'active' : ''}}">
+                    <a href="{{route('employer.pending')}}">
                         <i class="fas fa-angle-double-right"></i> Pending
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'rejected-employer' ? 'active' : ''}}">
+                    <a href="{{route('employer.rejected')}}">
                         <i class="fas fa-angle-double-right"></i> Rejected
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'approved-employer' ? 'active' : ''}}">
+                    <a href="{{route('employer.approved')}}">
                         <i class="fas fa-angle-double-right"></i> Approved
                     </a>
                 </li>
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'processed-employer' ? 'active' : ''}}">
+                    <a href="{{route('employer.processed')}}">
                         <i class="fas fa-angle-double-right"></i> Processed
                     </a>
                 </li>
