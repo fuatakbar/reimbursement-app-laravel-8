@@ -7,6 +7,8 @@ use Auth;
 
 // models
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Division;
 
 class BusinessOwnerController extends Controller
 {
@@ -30,13 +32,19 @@ class BusinessOwnerController extends Controller
     }
 
     public function manager(){
-        $data = User::select('firstname', 'lastname')->where('role', 2)->with('division')->orderBy('firstname', 'asc')->paginate(10);
+        $data = User::where('role', 2)
+            ->with('divisions')
+            ->orderBy('firstname', 'asc')
+            ->paginate(10);
         
         return view('pages.owner.user-table', compact('data'));
     }
 
     public function finance(){
-        $data = User::select('firstname', 'lastname')->where('role', 3)->with('division')->orderBy('firstname', 'asc')->paginate(10);
+        $data = User::where('role', 3)
+            ->with('divisions')
+            ->orderBy('firstname', 'asc')
+            ->paginate(10);
         
         return view('pages.owner.user-table', compact('data'));
     }
@@ -81,7 +89,15 @@ class BusinessOwnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        $roles = Role::orderBy('name', 'asc')->get();
+        $divisions = Division::orderBy('name', 'asc')->get();
+
+        if ($user) {
+            return view('pages.owner.edit-user', compact('user', 'roles', 'divisions'));
+        } else {
+            return redirect()->back()->with(['message' => 'Failure!']);
+        }
     }
 
     /**
@@ -93,7 +109,20 @@ class BusinessOwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::where('id', $id)->first();
+
+        try {
+
+            $user->firstname = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->role = $request->role;
+            $user->division = $request->division;
+            $user->save();
+
+            return redirect()->route('user.edit', [$id])->with(['message' => 'Data Updated Successfully!']);
+        } catch (\Throwable $th) {
+            return redirect()->route('user.edit', [$id])->with(['message' => 'Update Data Failed!']);
+        }
     }
 
     /**
@@ -104,6 +133,12 @@ class BusinessOwnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+
+        try {
+            $delete = $user->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Cant Delete This User']);
+        }
     }
 }

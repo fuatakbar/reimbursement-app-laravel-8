@@ -59,12 +59,17 @@
             @if (Auth::user()->role == 4)
                 <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
                     <a href="#">
-                        <i class="fas fa-angle-double-right"></i> Rejected
+                        <i class="fas fa-angle-double-right"></i> Submit Form
                     </a>
                 </li>
                 <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
                     <a href="#">
                         <i class="fas fa-angle-double-right"></i> Pending
+                    </a>
+                </li>
+                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
+                    <a href="#">
+                        <i class="fas fa-angle-double-right"></i> Rejected
                     </a>
                 </li>
                 <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">

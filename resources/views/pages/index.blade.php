@@ -15,7 +15,15 @@
                 {{-- class table --}}
                 <div class="card statistic">
                     <div class="card-header bg-primary">
-                        Reimbursement's Statistics
+                        @if (Auth::user() && Auth::user()->role == 1)
+                            Reimbursement's Statistics
+                        @elseif (Auth::user() && Auth::user()->role == 2)
+                            Reimbursement Requests
+                        @elseif (Auth::user() && Auth::user()->role == 3)
+                            Reimbursement Unprocessed
+                        @elseif (Auth::user() && Auth::user()->role == 4)
+                            Your Reimbursements List
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="row justify-content-center">

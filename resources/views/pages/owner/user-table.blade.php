@@ -42,15 +42,15 @@
                                             <td>{{$d->divisions->name}}</td>
                                             <td>
                                                 {{-- edit button --}}
-                                                <a href="#" class="pr-1">
+                                                <a href="{{route('user.edit', [$d->id])}}" class="pr-1">
                                                     <button class="btn btn-secondary py-1 px-2"><i class="fas fa-cog"></i></button>
                                                 </a>
                                                 {{-- delete button --}}
-                                                <form class="d-inline" action="#" method="post">
+                                                <form class="d-inline" action="{{route('user.destroy', [$d->id])}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button class="btn btn-danger py-1 px-2" onclick="return confirm('Are you sure want to delete this student?')"><i class="fas fa-trash-alt"></i></button>
+                                                    <button class="btn btn-danger py-1 px-2" onclick="return confirm('Are you sure want to delete this user?')"><i class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

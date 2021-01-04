@@ -31,7 +31,7 @@
     @include('includes.notification-modal')
 
     {{-- create bank account modal --}}
-    @if (Auth::user()->role == 4)
+    @if (Auth::user() && Auth::user()->role == 4)
         @include('includes.create-bank-account')
     @endif
 

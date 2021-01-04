@@ -56,6 +56,9 @@ Route::middleware(['auth', 'owner'])
         Route::get('/finances', 'BusinessOwnerController@finance')
             ->name('finances');
 
+        Route::resource('user', 'BusinessOwnerController')
+            ->only(['edit', 'update', 'destroy']);
+
     });
 
 // only business manager
