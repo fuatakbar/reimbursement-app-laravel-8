@@ -35,6 +35,12 @@ class EmployerController extends Controller
      */
     public function create()
     {
+        // validate that the employer have bank account
+        $check = User::where('id', Auth::user()->id)->select('bank_account')->first();
+        if ($check->bank_account == null) {
+            return redirect()->back();
+        }
+
         return view('pages.employer.form-request');
     }
 
