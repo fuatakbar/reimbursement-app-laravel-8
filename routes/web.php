@@ -97,6 +97,9 @@ Route::middleware(['auth', 'manager'])
 Route::middleware(['auth', 'finance'])
     ->group(function(){
 
-        // 
+        Route::resource('finance', 'FinanceController');  
+
+        Route::get('/reimbursement/processed-finance', 'FinanceController@processed')
+            ->name('finance.processed');
 
     });

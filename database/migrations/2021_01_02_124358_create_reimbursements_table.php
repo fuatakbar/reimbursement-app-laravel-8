@@ -15,8 +15,9 @@ class CreateReimbursementsTable extends Migration
     {
         Schema::create('reimbursements', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('transfer_proof')->nullable();
             $table->string('status', 10);
-            $table->integer('total');
+            $table->integer('total')->default(0);
             $table->string('filed_date', 20);
         });
     }

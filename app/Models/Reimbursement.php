@@ -12,7 +12,7 @@ class Reimbursement extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'status', 'filed_date', 'user_id', 'manager_id', 'financial_admin_id', 'total'
+        'status', 'filed_date', 'user_id', 'manager_id', 'financial_admin_id', 'total', 'transfer_proof'
     ];
 
     // relation

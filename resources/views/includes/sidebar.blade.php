@@ -48,8 +48,8 @@
 
             {{-- sidebar for financial admin --}}
             @if (Auth::user()->role == 3)
-                <li class="{{Request::segment(1) == 'class' ? 'active' : ''}}">
-                    <a href="#">
+                <li class="{{Request::segment(2) == 'processed-finance' ? 'active' : ''}}">
+                    <a href="{{route('finance.processed')}}">
                         <i class="fas fa-angle-double-right"></i> Processed
                     </a>
                 </li>

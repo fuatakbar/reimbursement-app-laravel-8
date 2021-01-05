@@ -71,7 +71,9 @@ class EmployerController extends Controller
         $time = Carbon::now()->format('H:i:s');
 
         // check if reimbursement for today exists or not
-        $reimbursement = Reimbursement::where('filed_date', $date)->first();
+        $reimbursement = Reimbursement::where('filed_date', $date)
+            ->where('user_id', Auth::user()->id)
+            ->first();
 
         if ($reimbursement == null) {
             // create new reimbursement master for today (date)
@@ -123,7 +125,7 @@ class EmployerController extends Controller
         $data = Reimbursement::where('user_id', Auth::user()->id)
             ->first();
 
-        $requests = ReimbursementRequest::where('filed_date', $data->filed_date)
+        $requests = ReimbursementRequest::where('reimbursement_id', $data->id)
             ->paginate(8);
 
         return view('pages.employer.detail-request', compact('data', 'requests'));

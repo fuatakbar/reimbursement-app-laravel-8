@@ -1,4 +1,4 @@
-@if (isset($must_fill_bank) && $must_fill_bank == 1)
+@if (isset($must_fill_bank) && $must_fill_bank == true)
     {{-- Modal Notif --}}
     <div class="modal notification fade" id="notifModal" tabindex="-1" role="dialog" aria-labelledby="notifModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
